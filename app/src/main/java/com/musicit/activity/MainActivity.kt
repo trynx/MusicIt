@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.musicit.R
 import com.musicit.model.setPrevScale
 import com.musicit.model.setNextScale
+import com.musicit.model.setScaleImg
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,21 +15,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setupButtons()
+        startScale()
     }
 
-    override fun onResume() {
-        super.onResume()
-        setNextScale(tv_scale)
-
+    private fun startScale() {
+        btn_next_scale.callOnClick()
     }
 
     private fun setupButtons() {
-        btn_next_scale.setOnClickListener{
+        btn_next_scale.setOnClickListener {
             setNextScale(tv_scale)
+            setScaleImg(tv_scale.text.toString(), img_piano, this.resources)
         }
 
-        btn_prev_scale.setOnClickListener{
+        btn_prev_scale.setOnClickListener {
             setPrevScale(tv_scale)
+            setScaleImg(tv_scale.text.toString(), img_piano, this.resources)
+
         }
     }
 
