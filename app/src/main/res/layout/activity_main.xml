@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_scale"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_scale_c"
+        android:background="@drawable/ic_scale_a"
         android:contentDescription="Piano scale image" />
 
 
