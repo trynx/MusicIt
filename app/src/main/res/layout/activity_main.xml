@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context=".view.activity.MainActivity">
 
     <TextView
         android:id="@+id/tv_scale"
@@ -28,6 +28,8 @@
         android:layout_centerInParent="true"
         android:background="@drawable/ic_scale_c"
         android:contentDescription="Piano scale image" />
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,5 +56,11 @@
             android:alpha="0"
             />
     </LinearLayout>
+
+    <View
+        android:id="@+id/scroll_up_detect"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
 
 </RelativeLayout>

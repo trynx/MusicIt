@@ -2,6 +2,7 @@ package com.musicit.model
 
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.musicit.R
@@ -11,18 +12,32 @@ import kotlin.math.roundToInt
 private val scaleMemory = mutableListOf<Scales>()
 private var currScalePointer = 0
 
-
+/**
+ * Set the next scale depend on a random scale or if
+ * the user used "setPrevScale" it will show the scale
+ * which was before without generating a new one
+ */
 fun setNextScale(tvScale: TextView) {
     tvScale.text = nextScale()
 }
 
+/**
+ * Set the previous scale back saving the current scale
+ * for the next time the user uses "setNextScale"
+ */
 fun setPrevScale(tvScale: TextView) {
     tvScale.text = prevScale()
 }
 
+/**
+ * Generate the image corresponding to the current scale
+ * and makes the image view visible
+ */
 fun setScaleImg(currScale: String, imgScale: ImageView, resource: Resources) {
     imgScale.background = nextScaleImg(currScale, resource)
+    imgScale.visibility = View.VISIBLE
 }
+
 
 private fun nextScaleImg(currScale: String, resource: Resources): Drawable? {
     when (currScale) {
@@ -79,7 +94,6 @@ private fun nextScaleImg(currScale: String, resource: Resources): Drawable? {
 }
 
 private fun nextScale(): String {
-
     if (currScalePointer < scaleMemory.size - 1) {
         return scaleMemory[++currScalePointer].getScaleName()
     }
@@ -89,7 +103,6 @@ private fun nextScale(): String {
 
 
 private fun prevScale(): String {
-
     if (currScalePointer <= scaleMemory.size - 1 && currScalePointer != 0) {
         currScalePointer--
     }
@@ -109,7 +122,7 @@ private fun randomScale(): String {
         scale = getRandomScale()
 
         if (scaleMemory.isEmpty()) {
-            // To keep it index base, first item to add
+            // To keep the scale index base, first item to add
             currScalePointer--
             break
         }
@@ -118,7 +131,7 @@ private fun randomScale(): String {
             // Don't get under the index possible for the list
             if (scaleMemory.size <= i) break
 
-            if (scale.equals(scaleMemory[scaleMemory.size - 1 - i])) {
+            if (scale.getScaleName() == (scaleMemory[scaleMemory.size - 1 - i].getScaleName())) {
                 duplicateScale = true
                 break
             } else {
@@ -134,7 +147,6 @@ private fun randomScale(): String {
 
 private fun getRandomScale(): Scales {
     val scaleArr = enumValues<Scales>()
-
 
     return scaleArr[(Math.random() * (scaleArr.size - 1)).roundToInt()]
 }
