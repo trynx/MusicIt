@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
 import com.musicit.R
+import com.musicit.model.checkIsFirstScale
 import com.musicit.model.setNextScale
 import com.musicit.model.setPrevScale
 import com.musicit.model.setScaleImg
@@ -90,11 +91,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun setNextScale(){
         setNextScale(tv_scale)
+        setPrevScaleArrowVisibility()
+
         img_piano.visibility = View.GONE
     }
 
     private fun setPrevScale(){
         setPrevScale(tv_scale)
+        setPrevScaleArrowVisibility()
+
         img_piano.visibility = View.GONE
     }
 
@@ -111,6 +116,13 @@ class MainActivity : AppCompatActivity() {
         setNextScale()
     }
 
+    /**
+     *  Hide the arrow when this is the first scale and there isn't any more previous scales
+     */
+    private fun setPrevScaleArrowVisibility(){
+        if(checkIsFirstScale()) img_prev_arrow.visibility = View.GONE
+        else img_prev_arrow.visibility = View.VISIBLE
+    }
 
 
 }

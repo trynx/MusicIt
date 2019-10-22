@@ -24,9 +24,14 @@ fun setNextScale(tvScale: TextView) {
 /**
  * Set the previous scale back saving the current scale
  * for the next time the user uses "setNextScale"
+ *
  */
-fun setPrevScale(tvScale: TextView) {
+fun setPrevScale(tvScale: TextView): Boolean {
+    val oldPrevious = tvScale.text
+
     tvScale.text = prevScale()
+
+    return oldPrevious == tvScale.text
 }
 
 /**
@@ -38,6 +43,8 @@ fun setScaleImg(currScale: String, imgScale: ImageView, resource: Resources) {
     imgScale.visibility = View.VISIBLE
 }
 
+
+fun checkIsFirstScale(): Boolean = currScalePointer == 0
 
 private fun nextScaleImg(currScale: String, resource: Resources): Drawable? {
     when (currScale) {
