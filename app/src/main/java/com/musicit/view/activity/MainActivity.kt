@@ -6,12 +6,9 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GestureDetectorCompat
-import com.musicit.R
-import com.musicit.model.checkIsFirstScale
-import com.musicit.model.setNextScale
-import com.musicit.model.setPrevScale
-import com.musicit.model.setScaleImg
+import com.musicit.model.*
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.musicit.R.layout.activity_main)
 
         setUpGestureDetectors()
         setupButtons()
@@ -85,22 +82,26 @@ class MainActivity : AppCompatActivity() {
         // Scroll up action was done
         if(tempStartY > tempEndY + 50f){
             setScaleImg(tv_scale.text.toString(), img_piano, applicationContext.resources)
-            img_piano.visibility = View.VISIBLE
+            rl_scale_img.visibility = View.VISIBLE
         }
     }
 
     private fun setNextScale(){
         setNextScale(tv_scale)
         setPrevScaleArrowVisibility()
+        setFingersPosition()
 
-        img_piano.visibility = View.GONE
+        rl_scale_img.visibility = View.GONE
     }
 
     private fun setPrevScale(){
+        if(checkIsFirstScale()) return
+
         setPrevScale(tv_scale)
         setPrevScaleArrowVisibility()
+        setFingersPosition()
 
-        img_piano.visibility = View.GONE
+        rl_scale_img.visibility = View.GONE
     }
 
     private fun setupButtons() {
@@ -122,6 +123,10 @@ class MainActivity : AppCompatActivity() {
     private fun setPrevScaleArrowVisibility(){
         if(checkIsFirstScale()) img_prev_arrow.visibility = View.GONE
         else img_prev_arrow.visibility = View.VISIBLE
+    }
+
+    private fun setFingersPosition(){
+        setFingersPositions(tv_scale.text.toString(), tv_left_hand, tv_right_hand)
     }
 
 

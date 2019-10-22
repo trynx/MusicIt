@@ -26,12 +26,8 @@ fun setNextScale(tvScale: TextView) {
  * for the next time the user uses "setNextScale"
  *
  */
-fun setPrevScale(tvScale: TextView): Boolean {
-    val oldPrevious = tvScale.text
-
+fun setPrevScale(tvScale: TextView) {
     tvScale.text = prevScale()
-
-    return oldPrevious == tvScale.text
 }
 
 /**
@@ -41,6 +37,15 @@ fun setPrevScale(tvScale: TextView): Boolean {
 fun setScaleImg(currScale: String, imgScale: ImageView, resource: Resources) {
     imgScale.background = nextScaleImg(currScale, resource)
     imgScale.visibility = View.VISIBLE
+}
+
+/**
+ * Generate the image corresponding to the current scale
+ * and makes the image view visible
+ */
+fun setFingersPositions(currScale: String, tvLeftHand: TextView, tvRightHand: TextView) {
+    tvLeftHand.text = getLeftHandFingers(currScale)
+    tvRightHand.text = getRightHandFingers(currScale)
 }
 
 
@@ -95,8 +100,54 @@ private fun nextScaleImg(currScale: String, resource: Resources): Drawable? {
             R.drawable.ic_scale_a_sharp_b_flat,
             null
         )
-
         else -> return resource.getDrawable(R.drawable.ic_scale_c, null)
+    }
+}
+
+private fun getLeftHandFingers(currScale: String): String {
+    when (currScale) {
+        Scales.C.getScaleName() -> return Scales.C.getScaleFingeringLeft()
+        Scales.D.getScaleName() -> return Scales.D.getScaleFingeringLeft()
+        Scales.E.getScaleName() -> return Scales.E.getScaleFingeringLeft()
+        Scales.F.getScaleName() -> return Scales.F.getScaleFingeringLeft()
+        Scales.G.getScaleName() -> return Scales.G.getScaleFingeringLeft()
+        Scales.A.getScaleName() -> return Scales.A.getScaleFingeringLeft()
+        Scales.B.getScaleName() -> return Scales.B.getScaleFingeringLeft()
+        Scales.C_SHARP.getScaleName() -> return Scales.C_SHARP.getScaleFingeringLeft()
+        Scales.D_SHARP.getScaleName() -> return Scales.D_SHARP.getScaleFingeringLeft()
+        Scales.F_SHARP.getScaleName() -> return Scales.F_SHARP.getScaleFingeringLeft()
+        Scales.G_SHARP.getScaleName() -> return Scales.G_SHARP.getScaleFingeringLeft()
+        Scales.A_SHARP.getScaleName() -> return Scales.A_SHARP.getScaleFingeringLeft()
+        Scales.D_FLAT.getScaleName() -> return Scales.D_FLAT.getScaleFingeringLeft()
+        Scales.E_FLAT.getScaleName() -> return Scales.E_FLAT.getScaleFingeringLeft()
+        Scales.G_FLAT.getScaleName() -> return Scales.G_FLAT.getScaleFingeringLeft()
+        Scales.A_FLAT.getScaleName() -> return Scales.A_FLAT.getScaleFingeringLeft()
+        Scales.B_FLAT.getScaleName() -> return Scales.B_FLAT.getScaleFingeringLeft()
+
+        else -> return "None"
+    }
+}
+private fun getRightHandFingers(currScale: String): String {
+    when (currScale) {
+        Scales.C.getScaleName() -> return Scales.C.getScaleFingeringRight()
+        Scales.D.getScaleName() -> return Scales.D.getScaleFingeringRight()
+        Scales.E.getScaleName() -> return Scales.E.getScaleFingeringRight()
+        Scales.F.getScaleName() -> return Scales.F.getScaleFingeringRight()
+        Scales.G.getScaleName() -> return Scales.G.getScaleFingeringRight()
+        Scales.A.getScaleName() -> return Scales.A.getScaleFingeringRight()
+        Scales.B.getScaleName() -> return Scales.B.getScaleFingeringRight()
+        Scales.C_SHARP.getScaleName() -> return Scales.C_SHARP.getScaleFingeringRight()
+        Scales.D_SHARP.getScaleName() -> return Scales.D_SHARP.getScaleFingeringRight()
+        Scales.F_SHARP.getScaleName() -> return Scales.F_SHARP.getScaleFingeringRight()
+        Scales.G_SHARP.getScaleName() -> return Scales.G_SHARP.getScaleFingeringRight()
+        Scales.A_SHARP.getScaleName() -> return Scales.A_SHARP.getScaleFingeringRight()
+        Scales.D_FLAT.getScaleName() -> return Scales.D_FLAT.getScaleFingeringRight()
+        Scales.E_FLAT.getScaleName() -> return Scales.E_FLAT.getScaleFingeringRight()
+        Scales.G_FLAT.getScaleName() -> return Scales.G_FLAT.getScaleFingeringRight()
+        Scales.A_FLAT.getScaleName() -> return Scales.A_FLAT.getScaleFingeringRight()
+        Scales.B_FLAT.getScaleName() -> return Scales.B_FLAT.getScaleFingeringRight()
+
+        else -> return "None"
     }
 }
 

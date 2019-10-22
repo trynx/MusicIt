@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rl_main_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.activity.MainActivity">
@@ -18,80 +19,125 @@
         android:id="@+id/center"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_centerInParent="true"/>
+        android:layout_centerInParent="true" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_scale"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_arrow_up_swipe"
         android:alpha="0.5"
-        android:contentDescription = "Arrow up"/>
+        android:background="@drawable/ic_arrow_up_swipe"
+        android:contentDescription="Arrow up" />
 
-    <ImageView
-        android:id="@+id/img_piano"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/rl_scale_img"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_scale"
         android:layout_centerInParent="true"
-        android:background="@drawable/ic_scale_a"
-        android:visibility="gone"
-        android:contentDescription="Piano scale image" />
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/img_piano"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/ic_scale_a"
+            android:contentDescription="Piano scale image" />
 
 
+        <TextView
+            android:id="@+id/tv_left_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/img_piano"
+            android:layout_centerInParent="true"
+            android:text="1 2 3 4 5 6 7"
+            android:textColor="#b32929"
+            android:textSize="24sp" />
 
+        <TextView
+            android:id="@+id/tv_right_hand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_left_hand"
+            android:layout_centerInParent="true"
+            android:text="1 2 3 4 5 6 7"
+            android:textColor="#3e598d"
+            android:textSize="24sp" />
 
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:weightSum="2">
-
-        <RelativeLayout
-            android:id="@+id/btn_prev_scale"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
-
-            <ImageView
-                android:id="@+id/img_prev_arrow"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:background="@drawable/ic_left_arrow"
-                android:layout_centerVertical="true"
-                android:layout_margin="30dp"
-                android:visibility="gone"
-                android:alpha="0.5"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/btn_next_scale"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/tv_right_hand"
+            android:layout_centerHorizontal="true">
 
             <ImageView
-                android:layout_height="wrap_content"
+                android:id="@+id/img_left_hand"
                 android:layout_width="wrap_content"
-                android:background="@drawable/ic_arrow_right"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_margin="30dp"
-                android:alpha="0.5"/>
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_left_hand"
+                android:contentDescription="Piano scale image" />
 
-        </RelativeLayout>
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/img_right_hand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_right_hand"
+                android:contentDescription="Piano scale image"/>
 
-    <View
-        android:id="@+id/scroll_up_detect"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+<LinearLayout
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:orientation="horizontal"
+android:weightSum="2">
+
+<RelativeLayout
+    android:id="@+id/btn_prev_scale"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:layout_width="0dp">
+
+    <ImageView
+        android:alpha="0.5"
+        android:background="@drawable/ic_left_arrow"
+        android:id="@+id/img_prev_arrow"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content"
+        android:visibility="gone" />
 
 </RelativeLayout>
+
+<RelativeLayout
+    android:id="@+id/btn_next_scale"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:layout_width="0dp">
+
+    <ImageView
+        android:alpha="0.5"
+        android:background="@drawable/ic_arrow_right"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:layout_width="wrap_content" />
+
+</RelativeLayout>
+</LinearLayout>
+
+<View
+android:id="@+id/scroll_up_detect"
+android:layout_height="match_parent"
+android:layout_width="match_parent" />
+
+    </RelativeLayout>
